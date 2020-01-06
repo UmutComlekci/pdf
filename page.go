@@ -711,6 +711,8 @@ func (p Page) walkTextBlocks(walker func(enc TextEncoding, x, y float64, s strin
 		switch op {
 		default:
 			return
+		case "BT": // todo(Umut): it's not operation for `newline` but for now this is solving my problem
+			walker(enc, currentX, currentY, "\n")
 		case "T*": // move to start of next line
 		case "Tf": // set text font and size
 			if len(args) != 2 {
